@@ -89,16 +89,22 @@ public class UserController {
 			String name = principal.getName();
 			User user = this.userRepository.getUserByUserName(name);
 			
+			System.out.println(file.getContentType());
+			System.out.println(file.getBytes());
+			System.out.println(file.getInputStream());
+			System.out.println(file.getResource());
 			
 			//processing and uploading file..
 			if(file.isEmpty()) {
 				//do nothing
 				System.out.println("File is empty");
-				contact.setImage("contact.png");
+				contact.setImage(file.getBytes());
+				//contact.setImage("contact.png");
 			}
 			else {
 				//Update the image name in contact table and upload the file to folder
-				contact.setImage(file.getOriginalFilename());
+				contact.setImage(file.getBytes());
+				//contact.setImage(file.getOriginalFilename());
 				
 				//save file object for this path
 				File saveFile = new ClassPathResource("/static/img").getFile();
@@ -241,8 +247,10 @@ public class UserController {
 				
 				//delete old photo
 				File deleteFile = new ClassPathResource("static/img").getFile();
-				File file1 = new File(deleteFile, oldContactDetails.getImage());
-				file1.delete();
+				/*
+				 * File file1 = new File(deleteFile, oldContactDetails.getImage());
+				 * file1.delete();
+				 */
 				
 				//update new photo
 				File saveFile = new ClassPathResource("static/img").getFile();
@@ -251,12 +259,14 @@ public class UserController {
 				
 				Files.copy(file.getInputStream(), path, StandardCopyOption.REPLACE_EXISTING);
 				
-				contact.setImage(file.getOriginalFilename());
+				//contact.setImage(file.getOriginalFilename());
+				contact.setImage(file.getBytes());
 				
 			}
 			else {
 				//if no photo is selected while updating, use the last one
-				contact.setImage(oldContactDetails.getImage());
+				//contact.setImage(oldContactDetails.getImage());
+				contact.setImage(oldContactDetails.getBytes());
 			}
 			
 			

@@ -20,7 +20,7 @@ public class Contact {
 	private String work;
 	private String email;
 	private String phone;
-	private String image;
+	private byte[] image;
 	@Column(length=500)
 	private String description;
 	
@@ -32,7 +32,7 @@ public class Contact {
 		// TODO Auto-generated constructor stub
 	}
 
-	public Contact(int cId, String name, String secondName, String work, String email, String phone, String image,
+	public Contact(int cId, String name, String secondName, String work, String email, String phone, byte[] image,
 			String description) {
 		super();
 		this.cId = cId;
@@ -93,12 +93,12 @@ public class Contact {
 		this.phone = phone;
 	}
 
-	public String getImage() {
+	public byte[] getImage() {
 		return image;
 	}
 
-	public void setImage(String image) {
-		this.image = image;
+	public void setImage(byte[] bs) {
+		this.image = bs;
 	}
 
 	public String getDescription() {
@@ -126,6 +126,11 @@ public class Contact {
 	@Override
 	public boolean equals(Object object) {
 		return this.cId == ((Contact)object).getcId();
+	}
+
+	public byte[] getBytes() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 	
 	

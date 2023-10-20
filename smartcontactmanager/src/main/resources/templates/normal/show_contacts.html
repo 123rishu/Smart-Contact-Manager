@@ -28,7 +28,7 @@
 							<th scope="row" th:text="${'SCMUSER' + c.cId}"></th>
 							
 							<td>
-								<img class="my_profile_picture" src="" th:src="@{'/img/' + ${c.image}}" alt="profile photo"/>
+								<!-- <img class="my_profile_picture" src="" th:src="@{'data:image/png;base64,' + ${c.image}}" alt="profile photo"/> -->
 								<span th:text="${c.name}"></span>
 							</td>
 							
